@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import {signInStart, signInFailure, signInSucces} from '../redux/userSlice';
+import {signInStart, signInFailure, signInSuccess,} from '../redux/userSlice';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -20,7 +20,7 @@ export default function SignIn() {
   const handleSubmit = async (e)=>{
   e.preventDefault();
   try{
- dispatch(signInStart);
+ dispatch(signInStart());
   const res =  await fetch('/api/auth/signin',
   {
    method:'POST',
@@ -35,7 +35,7 @@ export default function SignIn() {
     dispatch(signInFailure(data.message));
     return;
   }
-   dispatch(signInSucces(data));
+   dispatch(signInSuccess(data));
   navigate('/');
   }catch(error){
     dispatch(signInFailure(error.message));
@@ -52,7 +52,7 @@ export default function SignIn() {
       </form>
       <div className='flex gap-2 m'>
         <p className='font-semibold'>Don't have an account?</p>
-        <Link to={"/sign-up"}><span className='text-blue-700'>Sign In</span></Link>
+        <Link to={"/sign-up"}><span className='text-blue-700'>Sign Up</span></Link>
       </div>
       {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>

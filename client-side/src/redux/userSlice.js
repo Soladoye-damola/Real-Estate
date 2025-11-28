@@ -1,5 +1,5 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { signin } from "../../../api/controllers/auth.controller";
+import { createSlice } from "@reduxjs/toolkit";
+
 
 
 
@@ -17,14 +17,14 @@ const userSlice = createSlice({
     state.loading = true;
    },
 
-   signInSuccess:(state, action){
-    state.currentUser = action.payload,
-    state.loading = false,
-    state.error = null,
+   signInSuccess:(state, action)=>{
+    state.currentUser = action.payload;
+    state.loading = false;
+    state.error = null;
    },
-   signInFailure:(state, action){
-    state.error = action.payload,
-    state.loading = false
+   signInFailure:(state, action)=>{
+    state.error = action.payload;
+    state.loading = false;
    }
   }
 });
